@@ -5,15 +5,16 @@ letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
            "U", "V", "W", "X", "Y", "Z"]
 
 def main():
-    enigma = Enigma.Enigma()
+    enigma = Enigma.Enigma(0, 0, 0)
+    enigma.getInfo()
     while True:
-        # enigma.getInfo()
         print("Enter a string:    ", end="")
         string = input().upper()
         encrypted = []
         for i, val in enumerate(string):
             if letters.__contains__(string[i]):
-                encrypted.append(enigma.encrypt(string[i]))
+                e = enigma.encrypt(string[i])
+                encrypted.append(e)
             else:
                 encrypted.append(string[i])
             

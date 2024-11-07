@@ -36,6 +36,7 @@ class Enigma:
             self.__mrotor1 = random.randint(0, 25)
             self.__mrotor2 = random.randint(0, 25)
             self.__mrotor3 = random.randint(0, 25)
+            self.__plugboardConfig = self.__getConfig()
             
             self.__rotor1 = 0
             self.__rotor2 = 0
@@ -45,12 +46,23 @@ class Enigma:
             self.__mrotor1 = args[0]
             self.__mrotor2 = args[1]
             self.__mrotor3 = args[2]
+            self.__plugboardConfig = self.__getConfig()
+
             
             self.__rotor1 = 0
             self.__rotor2 = 0
             self.__rotor3 = 0
+                    
+        if len(args) == 4:
+            self.__mrotor1 = args[0]
+            self.__mrotor2 = args[1]
+            self.__mrotor3 = args[2]
+            self.__plugboardConfig = args[3]
             
-        self.__plugboardConfig = self.__getConfig()
+            self.__rotor1 = 0
+            self.__rotor2 = 0
+            self.__rotor3 = 0
+                        
         self.__rotorWiring = self.__moveRotor(wiring, self.__mrotor1 * pow(26, 0) + self.__mrotor2 * pow(26, 1) + self.__mrotor3 * pow(26, 2))
     
     def __getConfig(self):
@@ -68,7 +80,7 @@ class Enigma:
             pair = [letter1, letter2]
             config.append(pair)
         return config
-        
+    
     def __moveRotor(self, wiringStart, n):
         wiringCopy = copy.deepcopy(wiringStart)
         for i in range (n):
@@ -118,6 +130,9 @@ class Enigma:
             
         print("SOMETHING BAD HAPPENED :(")
     
+    def setPlugboardConfig(self, plugboardConfig):
+        self.__plugboardConfig = plugboardConfig
+    
     def encrypt(self, char):
         # Plugboard
         plugboardMap = self.__getPlugboardMapping(char)
@@ -135,8 +150,8 @@ class Enigma:
         # Plugboard
         encryptedChar = self.__getPlugboardMapping(r1Char2)
         
-        # print(char, "->", plugboardMap, "-> (", r1Char, i1, ") -> (", r2Char, i2, ") -> (", r3Char, i3, ") -> (", 
-        #       reflectedChar, ") -> (", r3Char2, i4, ") -> (", r2Char2, i5, ") -> (", r1Char2, i6, ") ->", encryptedChar)
+        # print(char, "->", plugboardMap, "-> (", r1Char, ") -> (", r2Char, ") -> (", r3Char, ") -> (", 
+        #       reflectedChar, ") -> (", r3Char2, ") -> (", r2Char2, ") -> (", r1Char2, ") ->", encryptedChar)
         
         self.__rotorWiring = self.__moveRotor(self.__rotorWiring, 1)
         
