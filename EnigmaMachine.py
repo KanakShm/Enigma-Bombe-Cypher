@@ -5,9 +5,9 @@ letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
            "U", "V", "W", "X", "Y", "Z"]
 
 def main():
-    enigma = Enigma.Enigma(0, 0, 0)
-    enigma.getInfo()
+    enigma = Enigma.Enigma()
     while True:
+        # enigma.getInfo()
         print("Enter a string:    ", end="")
         string = input().upper()
         encrypted = []

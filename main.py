@@ -6,7 +6,7 @@ letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
 
 def main():
     enigma = Enigma.Enigma(0, 0, 0)
-    f = open("test.txt")
+    f = open("files/email.txt")
     original = f.read().upper()
     encrypted = ""
     for i in original:

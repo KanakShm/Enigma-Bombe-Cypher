@@ -23,7 +23,7 @@ class Bombe:
             for j in range(26):
                 for k in range(26):
                     print("(", i, ") (", j,  ") (", k, ")")
-                    time.sleep(1.4)
+                    time.sleep(2.7)
                     enigma1 = Enigma.Enigma(k, j, i, self.plugBoardWiring)
                     count = 0
                     while True:
